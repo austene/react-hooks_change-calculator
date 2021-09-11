@@ -18,7 +18,7 @@ function App() {
   //state
   const [changeAmount, setChangeAmount] = React.useState(0)
 
-  //function
+  //functions
   const onChangeAmount = (event) => {
     setChangeAmount(event.target.value);
   };
