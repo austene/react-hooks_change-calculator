@@ -1,5 +1,5 @@
 # Change Calculator
-You're working a cash register and now you need to return change to the customer
+You're working a cash register and now you need to return change to the customer.
 How 10's, 5's, quarters, and nickels do you need?!
 
 Fear not!
