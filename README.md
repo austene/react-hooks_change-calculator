@@ -4,7 +4,7 @@ How 10's, 5's, quarters, and nickels do you need?!
 
 Fear not!
 
-Creates a calculator that limits change amount input to only numbers and two decimals.  Click the Calculate button to return the types and exact amount of dollars and coins are required.
+Creates a calculator that limits change amount input to only numbers and two decimals.  Click the Calculate button to return the types and the amounts of dollars and coins required to make exact change for the customer.
 
 Face the customer service industry with confidence.
 
