@@ -16,12 +16,39 @@ const denominations = [
 
 function App() {
   //state
-  const [changeAmount, setChangeAmount] = React.useState(0)
+  const [changeAmount, setChangeAmount] = React.useState('');
+  const [answer, setAnswer] = React.useState();
 
   //functions
   const onChangeAmount = (event) => {
-    setChangeAmount(event.target.value);
+    // debugger;
+    let inputAmount = event.target.value;
+    let re =  /(\d*)(\.*)(\d{0,2})/;
+    let ans = inputAmount.match(re);
+    setChangeAmount(ans[1] + ans[2] + ans[3]);
   };
+
+  const onClickCalc = () => {
+    let re = /(\d*)\.*(\d*)/
+    let subArr = changeAmount.match(re)
+    let dollars = subArr[1] === '' ? 0 : parseInt(subArr[1]) * 100
+    let cents = subArr[2] === '' ? 0 : parseInt(subArr[2])
+    cents = cents < 10 ? cents * 10 : cents
+    let remainderCents = dollars + cents
+
+    setAnswer(denominations.map((d, index) => {
+      let quotient = Math.floor(remainderCents/d.value);
+      remainderCents = remainderCents % d.value;
+      if (quotient === 1) {
+        return <p key={index}>{quotient} {d.singleName}</p>
+      } else if (quotient > 1) {
+        return <p key={index}>{quotient} {d.pluralName}</p>
+      } else {
+        return null;
+      };
+    }));
+  };
+
   return (
     <div className="App">
       <header>Change Calculator</header>
@@ -37,21 +64,27 @@ function App() {
         <input 
           className='input'
           id='change-amt'
-          type='number'
-          min='0.01'
-          step='0.01'
+          type='text'
           onChange={(event) => onChangeAmount(event)}
-          // value={changeAmount}
-          placeholder='enter amount'
+          value={changeAmount}
+          placeholder='0.00'
         >
         </input>
+        <button
+          className='button'
+          id='calc-btn'
+          type='submit'
+          onClick={() => onClickCalc()}
+        >
+          Calculate Change
+        </button>
       </div>
 
       <hr />
 
       <div>
         <p>Please give the customer: </p>
-        <p>ANSWER</p>
+        <div>{answer}</div>
       </div>
     </div>
   );
